@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador Insensível a Maiúsculas e Minúsculas</title>
+    <style>
+        .result {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Buscador</h1>
+    <input type="text" id="searchInput" placeholder="Digite para buscar..." onkeyup="search()">
+    <div id="resultContainer" class="result"></div>
+
+    <script>
+        const data = [
+            "Apple",
+            "Banana",
+            "Cherry",
+            "Date",
+            "Elderberry",
+            "Fig",
+            "Grape",
+            "Honeydew"
+        ];
+
+        function search() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const resultContainer = document.getElementById('resultContainer');
+            resultContainer.innerHTML = '';  // Limpa os resultados anteriores
+
+            const results = data.filter(item => item.toLowerCase().includes(input));
+
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const div = document.createElement('div');
+                    div.textContent = result;
+                    resultContainer.appendChild(div);
+                });
+            } else {
+                resultContainer.textContent = 'Nenhum resultado encontrado';
+            }
+        }
+    </script>
+</body>
+</html>
